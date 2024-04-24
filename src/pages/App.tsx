@@ -1,13 +1,15 @@
-import {Outlet, RouterProvider} from "react-router-dom";
-import {Provider} from "react-redux";
-import {rootStore} from "@redux/store/rootStore";
-import {router} from "../router";
+import { Outlet, RouterProvider } from "react-router-dom";
+import { router } from "../router";
+import { StoreProvider } from "@redux/StoreProvider";
+import { ThemeProvider } from "@theme/theme";
 
 export const App = () => {
   return (
-      <Provider store={rootStore}>
-        <RouterProvider router={router}/>
-        <Outlet/>
-      </Provider>
+      <StoreProvider>
+        <ThemeProvider>
+          <RouterProvider router={router}/>
+          <Outlet/>
+        </ThemeProvider>
+      </StoreProvider>
   )
 }
