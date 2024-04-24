@@ -1,7 +1,7 @@
-import {Middleware} from 'redux';
-import {configureStore} from "@reduxjs/toolkit";
-import {rootReducer} from "./rootReducer";
-import {RootState} from "@models/dataModel";
+import { Middleware } from 'redux';
+import { configureStore } from "@reduxjs/toolkit";
+import { rootReducer } from "./rootReducer";
+import { RootState } from "@models/dataModel";
 
 const middlewares: Middleware<RootState>[] = [];
 export const rootStore = configureStore<RootState, any, any>({
