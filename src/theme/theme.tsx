@@ -1,6 +1,6 @@
 import { createTheme, CssBaseline, ThemeOptions } from "@mui/material";
 import { useMemo } from "react";
-import { ComponentsOverrides } from "./overrides";
+import { ComponentsOverrides } from "@theme/overrides";
 import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
 import { palette } from './palette';
 import { typography } from './typography';
