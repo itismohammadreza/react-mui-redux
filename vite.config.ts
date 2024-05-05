@@ -11,12 +11,13 @@ export default defineConfig({
       "@components": resolve(__dirname, "./src/components/"),
       "@contexts": resolve(__dirname, "./src/contexts/"),
       "@hooks": resolve(__dirname, "./src/hooks/"),
-      "@i18n": resolve(__dirname, "./src/i18n/"),
+      "@locales": resolve(__dirname, "./src/locales/"),
       "@models": resolve(__dirname, "./src/models/"),
       "@pages": resolve(__dirname, "./src/pages/"),
       "@redux": resolve(__dirname, "./src/redux/"),
       "@services": resolve(__dirname, "./src/services/"),
       "@theme": resolve(__dirname, "./src/theme/"),
+      "@root": resolve(__dirname, "./src/"),
     }
   }
 })
