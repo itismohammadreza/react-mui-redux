@@ -1,5 +1,5 @@
 import { createTheme, CssBaseline, ThemeOptions } from "@mui/material";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { ComponentsOverrides } from "@theme/overrides";
 import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
 import { palette } from './palette';
@@ -18,9 +18,14 @@ export const ThemeProvider = ({children}: WithChildren) => {
     typography
   }), [paletteMode, direction]);
 
-  const theme = useMemo(() => createTheme(themeOptions, locales[locale]), [locale]);
+  const theme = useMemo(() => createTheme(themeOptions, locales[locale]), [locale, paletteMode]);
 
   theme.components = ComponentsOverrides(theme);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("dir", direction);
+    document.documentElement.setAttribute("lang", locale);
+  }, [direction, locale]);
 
   return (
       <MUIThemeProvider theme={theme}>
