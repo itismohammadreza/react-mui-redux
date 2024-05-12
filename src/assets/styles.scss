@@ -1,8 +1,0 @@
-@import "mixins";
-
-html,
-body {
-  font-family: Roboto, Vazirmatn, "sans-serif";
-  height: 100%;
-  @include scrollbar($thickness: 10px, $radius: 10px, $track-color: #f5f5f5, $thumb-color: #949494);
-}
