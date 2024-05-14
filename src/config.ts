@@ -5,6 +5,7 @@ export const AppConfig: Readonly<AppState> = {
   direction: "ltr",
   locale: "faIR",
   langStorageKey: "lng",
-  apiUrl: process.env.VITE_API_URL!
+  apiUrl: process.env.VITE_API_URL!,
+  requestTimeout: 15000,
 }
 
