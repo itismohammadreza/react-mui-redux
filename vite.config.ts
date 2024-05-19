@@ -17,6 +17,7 @@ export default defineConfig({
       "@redux": resolve(__dirname, "./src/redux/"),
       "@services": resolve(__dirname, "./src/services/"),
       "@theme": resolve(__dirname, "./src/theme/"),
+      "@utils": resolve(__dirname, "./src/utils/"),
       "@root": resolve(__dirname, "./src/"),
     }
   }
