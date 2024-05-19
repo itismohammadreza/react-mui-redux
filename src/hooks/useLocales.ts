@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Locale } from "@models/theme";
 import { changeLocale as changeLocaleAction } from "@redux/slices/appSlice";
 import { useDispatch } from "react-redux";
-import { useApp } from "@hooks/useApp.ts";
+import { useApp } from "@hooks/useApp";
 
 export const useLocales = () => {
   const {i18n, t} = useTranslation();

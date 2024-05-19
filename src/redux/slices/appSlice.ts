@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppState } from "@models/dataModel";
 import { Direction, PaletteMode } from "@mui/material";
-import { globalConfig } from "@config/globalConfig";
+import { globalConfig} from "@config/globalConfig";
 import { Locale } from "@models/theme";
 
 const appSlice = createSlice({
