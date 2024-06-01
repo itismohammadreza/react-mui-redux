@@ -35,7 +35,6 @@ export const router = createBrowserRouter([
         path: "",
         element: <Home/>,
       },
-      // sample for a protected page
       {
         path: "protected",
         loader: protectedLoader,
