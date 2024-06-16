@@ -1,5 +1,5 @@
 import { getState } from "@redux/store/rootStore";
-import { redirect } from "next/navigation";
+import { redirect } from "react-router-dom";
 
 const hasPermission = (input: string[] | string) => {
   if (!input || !input.length) {
@@ -14,7 +14,7 @@ const hasPermission = (input: string[] | string) => {
 
 const logout = () => {
   localStorage.removeItem('token');
-  redirect('/auth/login')
+  redirect('/auth/login');
 }
 
 const hasToken = () => {

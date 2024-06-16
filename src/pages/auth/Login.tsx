@@ -4,7 +4,7 @@ import { FormElements } from "@components/forms/FormElements";
 import { useLoginMutation } from "@services/dataService";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+export const Login = () => {
   const [trigger, {data, isLoading}] = useLoginMutation();
   const navigate = useNavigate();
 
@@ -56,5 +56,3 @@ const Login = () => {
       </FormElements.Container>
   )
 }
-
-export default Login;

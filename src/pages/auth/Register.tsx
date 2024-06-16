@@ -4,7 +4,7 @@ import { FormElements } from "@components/forms/FormElements";
 import { useRegisterMutation } from "@services/dataService";
 import { Link, useNavigate } from "react-router-dom";
 
-const Register = () => {
+export const Register = () => {
   const [trigger, {data, isLoading}] = useRegisterMutation();
   const navigate = useNavigate();
 
@@ -69,5 +69,3 @@ const Register = () => {
       </FormElements.Container>
   )
 }
-
-export default Register;
