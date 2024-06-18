@@ -16,8 +16,8 @@ export const Login = () => {
   const onSubmit = async (value: User) => {
     try {
       const {data} = await login(value);
-      const {data: user} = await getProfile(data.access_token);
       localStorage.setItem('token', data.access_token);
+      const {data: user} = await getProfile();
       dispatch(updateUser(user));
       navigate('/');
     } catch {

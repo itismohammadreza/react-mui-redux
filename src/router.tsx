@@ -8,7 +8,7 @@ import { About } from "@pages/main/About.tsx";
 
 const protectedLoader = ({request}: LoaderFunctionArgs) => {
   const {user} = getState();
-  if (!user.name) {
+  if (!user?.name) {
     const params = new URLSearchParams();
     params.set("return", new URL(request.url).pathname);
     return redirect("/auth/login?" + params.toString());
@@ -18,7 +18,7 @@ const protectedLoader = ({request}: LoaderFunctionArgs) => {
 
 const loginLoader = async () => {
   const {user} = getState();
-  if (user.name) {
+  if (user?.name) {
     return redirect("/");
   }
   return null;
@@ -29,7 +29,6 @@ export const router = createBrowserRouter([
     path: "/",
     element: <Main/>,
     loader: async () => {
-      // return logged in user data
       return {}
     },
     children: [
