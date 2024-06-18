@@ -3,9 +3,9 @@ import { Loading } from "./Loading";
 import { Toast } from "./Toast";
 import { StoreProvider } from "@redux/StoreProvider";
 import { WithChildren } from "@models/common";
-import '@locales/i18n';
 import { RouterProvider } from "react-router-dom";
-import { router } from "@root/router.tsx";
+import { router } from "@root/router";
+import '@locales/i18n';
 
 export const Providers = ({children}: WithChildren) => {
   return (

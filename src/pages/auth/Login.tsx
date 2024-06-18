@@ -3,12 +3,13 @@ import { Container, Grid, Typography } from "@mui/material";
 import { FormElements } from "@components/forms/FormElements";
 import { useLoginMutation } from "@services/dataService";
 import { Link, useNavigate } from "react-router-dom";
+import { User } from "@models/business.ts";
 
 export const Login = () => {
-  const [trigger, {data, isLoading}] = useLoginMutation();
+  const [trigger, {isLoading}] = useLoginMutation();
   const navigate = useNavigate();
 
-  const onSubmit = async (value: any) => {
+  const onSubmit = async (value: User) => {
     try {
       const res = await trigger(value);
       localStorage.setItem('token', res.token);
@@ -46,10 +47,10 @@ export const Login = () => {
           </LoadingButton>
           <Grid container>
             <Grid item xs>
-              <Link to="/auth/forget-password" variant="body2"> Forgot password? </Link>
+              <Link to="/auth/forget-password"> Forgot password? </Link>
             </Grid>
             <Grid item>
-              <Link to="/auth/register" variant="body2"> Don't have an account? Sign Up </Link>
+              <Link to="/auth/register"> Don't have an account? Sign Up </Link>
             </Grid>
           </Grid>
         </Container>

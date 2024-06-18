@@ -1,8 +1,10 @@
 import { createBrowserRouter, LoaderFunctionArgs, redirect, } from "react-router-dom";
-import { Home } from "@pages/Home";
 import { getState } from "@redux/store/rootStore";
-import { Login } from "@pages/Login";
-import { Register } from "@pages/Register";
+import { Login } from "@pages/auth/Login";
+import { Register } from "@pages/auth/Register";
+import { Main } from "@pages/main/Main";
+import { Home } from "@pages/main/Home";
+import { About } from "@pages/main/About.tsx";
 
 const protectedLoader = ({request}: LoaderFunctionArgs) => {
   const {user} = getState();
@@ -16,7 +18,6 @@ const protectedLoader = ({request}: LoaderFunctionArgs) => {
 
 const loginLoader = async () => {
   const {user} = getState();
-  // if user exist, no need to visit login page
   if (user.name) {
     return redirect("/");
   }
@@ -26,6 +27,7 @@ const loginLoader = async () => {
 export const router = createBrowserRouter([
   {
     path: "/",
+    element: <Main/>,
     loader: async () => {
       // return logged in user data
       return {}
@@ -34,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "",
         element: <Home/>,
+      },
+      {
+        path: "about",
+        element: <About/>,
       },
       {
         path: "protected",
