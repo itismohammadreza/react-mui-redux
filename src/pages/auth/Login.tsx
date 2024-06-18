@@ -1,18 +1,24 @@
 import { LoadingButton } from "@mui/lab";
 import { Container, Grid, Typography } from "@mui/material";
 import { FormElements } from "@components/forms/FormElements";
-import { useLoginMutation } from "@services/dataService";
+import { useLazyGetProfileQuery, useLoginMutation } from "@services/dataService";
 import { Link, useNavigate } from "react-router-dom";
-import { User } from "@models/business.ts";
+import { User } from "@models/business";
+import { useDispatch } from "react-redux";
+import { updateUser } from "@redux/slices/userSlice";
 
 export const Login = () => {
-  const [trigger, {isLoading}] = useLoginMutation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [login, {isLoading}] = useLoginMutation();
+  const [getProfile] = useLazyGetProfileQuery();
 
   const onSubmit = async (value: User) => {
     try {
-      const res = await trigger(value);
-      localStorage.setItem('token', res.token);
+      const {data} = await login(value);
+      const {data: user} = await getProfile(data.access_token);
+      localStorage.setItem('token', data.access_token);
+      dispatch(updateUser(user));
       navigate('/');
     } catch {
     }

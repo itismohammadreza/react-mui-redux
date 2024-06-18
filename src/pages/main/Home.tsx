@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useApp } from "@hooks/useApp";
 import { changePalette } from "@redux/slices/appSlice";
 import { useLocales } from "@hooks/useLocales";
-import { useLazyGetMoviesQuery } from "@services/dataService";
+import { useLazyGetProductsQuery } from "@services/dataService";
 import { useUser } from "@hooks/useUser";
 import { Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
@@ -14,7 +14,7 @@ export const Home = () => {
   const {changeLocale, currentLocale} = useLocales();
   const dispatch = useDispatch();
   const {paletteMode} = useApp();
-  const [trigger, {isLoading}] = useLazyGetMoviesQuery();
+  const [trigger, {isLoading}] = useLazyGetProductsQuery();
 
   return (
       <>
