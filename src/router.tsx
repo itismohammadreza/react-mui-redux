@@ -1,14 +1,35 @@
 import { createBrowserRouter, LoaderFunctionArgs, redirect, } from "react-router-dom";
-import { getState } from "@redux/store/rootStore";
+import { dispatch, getState } from "@redux/store/rootStore";
 import { Login } from "@pages/auth/Login";
 import { Register } from "@pages/auth/Register";
 import { Main } from "@pages/main/Main";
 import { Home } from "@pages/main/Home";
-import { About } from "@pages/main/About.tsx";
+import { About } from "@pages/main/About";
+import { authService } from "@services/authService";
+import { updateUser } from "@redux/slices/userSlice";
+import { apiEndpoints } from "@services/dataService";
+
+const provideUser = async () => {
+  try {
+    const storageToken = authService.hasToken();
+    const {user} = getState();
+    if (!storageToken) {
+      return null;
+    }
+    if (user) {
+      return null;
+    }
+    const {data} = await dispatch(apiEndpoints.getProfile.initiate());
+    dispatch(updateUser(data));
+    return user;
+  } catch {
+    return null;
+  }
+}
 
 const protectedLoader = ({request}: LoaderFunctionArgs) => {
   const {user} = getState();
-  if (!user?.name) {
+  if (!user) {
     const params = new URLSearchParams();
     params.set("return", new URL(request.url).pathname);
     return redirect("/auth/login?" + params.toString());
@@ -18,7 +39,7 @@ const protectedLoader = ({request}: LoaderFunctionArgs) => {
 
 const loginLoader = async () => {
   const {user} = getState();
-  if (user?.name) {
+  if (user) {
     return redirect("/");
   }
   return null;
@@ -28,9 +49,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main/>,
-    loader: async () => {
-      return {}
-    },
+    loader: provideUser,
     children: [
       {
         path: "",

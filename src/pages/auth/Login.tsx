@@ -2,13 +2,14 @@ import { LoadingButton } from "@mui/lab";
 import { Container, Grid, Typography } from "@mui/material";
 import { FormElements } from "@components/forms/FormElements";
 import { useLazyGetProfileQuery, useLoginMutation } from "@services/dataService";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { User } from "@models/business";
 import { useDispatch } from "react-redux";
 import { updateUser } from "@redux/slices/userSlice";
 
 export const Login = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const [login, {isLoading}] = useLoginMutation();
   const [getProfile] = useLazyGetProfileQuery();
@@ -19,7 +20,7 @@ export const Login = () => {
       localStorage.setItem('token', data.access_token);
       const {data: user} = await getProfile();
       dispatch(updateUser(user));
-      navigate('/');
+      navigate(searchParams.get('return') ?? '/');
     } catch {
     }
   }
