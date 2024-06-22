@@ -1,71 +1,85 @@
-import { Container, Grid, Typography } from "@mui/material";
+import { Container, Grid, Stack, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { FormElements } from "@components/forms/FormElements";
 import { useRegisterMutation } from "@services/dataService";
 import { Link, useNavigate } from "react-router-dom";
 
 export const Register = () => {
-  const [trigger, {data, isLoading}] = useRegisterMutation();
+  const [trigger, {isLoading}] = useRegisterMutation();
   const navigate = useNavigate();
 
   const onSubmit = async (value: any) => {
     try {
-      const res = await trigger(value);
+      await trigger(value);
       navigate('/');
     } catch {
     }
   }
 
   return (
-      <FormElements.Container onSuccess={onSubmit}>
-        <Container component="main" maxWidth="xs" sx={{marginTop: 8}}>
-          <Typography component="h1" marginBottom={2} variant="h5" textAlign="center"> Sign up </Typography>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <FormElements.TextField
-                  fullWidth
-                  autoComplete="given-name"
-                  name="firstName"
-                  label="First Name"
-                  rules={{required: 'Required'}}/>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <FormElements.TextField
-                  fullWidth
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                  rules={{required: 'Required'}}/>
-            </Grid>
-            <Grid item xs={12}>
-              <FormElements.TextField
-                  fullWidth
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  rules={{required: 'Required'}}/>
-            </Grid>
-            <Grid item xs={12}>
-              <FormElements.TextField
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  autoComplete="new-password"
-                  rules={{required: 'Required'}}/>
-            </Grid>
-          </Grid>
-          <LoadingButton type="submit" fullWidth variant="contained" sx={{mt: 3, mb: 2}}>
-            Sign Up
-          </LoadingButton>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link to="/auth/login" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
-        </Container>
-      </FormElements.Container>
+      <Grid container sx={{height: '100vh'}}>
+        <Grid item
+              xs={false}
+              sm={4}
+              md={7}
+              sx={{
+                backgroundImage: 'url(/images/login-bg.jpg)',
+                backgroundRepeat: 'no-repeat',
+                backgroundColor: (t) => t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                position: 'relative',
+                '&::before': {
+                  content: '""',
+                  display: 'block',
+                  position: 'absolute',
+                  width: '100%',
+                  height: '100%',
+                  top: 0,
+                  left: 0,
+                  background: '-webkit-linear-gradient(left,rgba(0,168,255,0.5),rgba(185,0,255,0.5))',
+                  pointerEvents: 'none',
+                }
+              }}/>
+        <Grid item xs={12} sm={8} md={5}>
+          <FormElements.Container onSuccess={onSubmit}>
+            <Container maxWidth="xs">
+              <Typography sx={{mt: 10, mb: 8}} component="h1" variant="h3" textAlign="center">
+                Sign up
+              </Typography>
+              <Stack spacing={2} maxWidth="xs">
+                <FormElements.TextField
+                    fullWidth
+                    name="firstName"
+                    label="First Name"
+                    rules={{required: 'Required'}}/>
+                <FormElements.TextField
+                    fullWidth
+                    label="Last Name"
+                    name="lastName"
+                    rules={{required: 'Required'}}/>
+                <FormElements.TextField
+                    fullWidth
+                    label="Email Address"
+                    name="email"
+                    rules={{required: 'Required'}}/>
+                <FormElements.TextField
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    rules={{required: 'Required'}}/>
+                <LoadingButton loading={isLoading} type="submit" fullWidth variant="contained" sx={{mt: 3, mb: 2}}>
+                  Sign Up
+                </LoadingButton>
+                <Stack justifyContent="space-between" direction={{md: 'row'}}>
+                  <Link to="/auth/forget-password"> Forgot password? </Link>
+                  <Link to="/auth/login"> Already have an account? Sign in </Link>
+                </Stack>
+              </Stack>
+            </Container>
+          </FormElements.Container>
+        </Grid>
+      </Grid>
   )
 }
