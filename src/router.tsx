@@ -8,6 +8,7 @@ import { About } from "@pages/main/About";
 import { authService } from "@services/authService";
 import { updateUser } from "@redux/slices/userSlice";
 import { apiEndpoints } from "@services/dataService";
+import { NotFound } from "@pages/NotFound";
 
 const provideUser = async () => {
   try {
@@ -79,5 +80,9 @@ export const router = createBrowserRouter([
         element: <Register/>,
       },
     ]
+  },
+  {
+    path: '*',
+    element: <NotFound/>
   }
 ]);
