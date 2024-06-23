@@ -12,15 +12,15 @@ import { scrollbar } from "@theme/overrides/scrollbar";
 export const locales = muiLocales;
 
 export const ThemeProvider = ({children}: WithChildren) => {
-  const {paletteMode, direction, locale} = useApp();
+  const {paletteMode, rtl, locale} = useApp();
 
   const theme = useMemo(() =>
           createTheme({
             palette: palette[paletteMode],
-            direction,
+            direction: rtl ? 'rtl' : 'ltr',
             typography
           }, locales[locale]),
-      [locale, paletteMode, direction]);
+      [locale, paletteMode, rtl]);
 
   theme.components = {
     MuiCssBaseline: {
@@ -33,9 +33,9 @@ export const ThemeProvider = ({children}: WithChildren) => {
   };
 
   useEffect(() => {
-    document.documentElement.setAttribute("dir", direction);
+    document.documentElement.setAttribute("dir", rtl ? 'rtl' : 'ltr');
     document.documentElement.setAttribute("lang", locale.substring(0, 2));
-  }, [direction, locale]);
+  }, [rtl, locale]);
 
   return (
       <MUIThemeProvider theme={theme}>

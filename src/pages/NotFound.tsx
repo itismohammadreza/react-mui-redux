@@ -94,7 +94,7 @@ export const NotFound = () => {
           <Typography variant="h1" sx={{fontSize: '60px', lineHeight: '46px', marginBottom: '40px'}}>404</Typography>
           <Typography variant="body1">Page not found</Typography>
           <Box sx={{marginTop: '40px'}}>
-            <Button onClick={() => window.history.back()} sx={{marginRight: '10px'}}>
+            <Button component={Link} to="../" sx={{marginRight: '10px'}}>
               Go Back
             </Button>
             <Button component={Link} to="/">
