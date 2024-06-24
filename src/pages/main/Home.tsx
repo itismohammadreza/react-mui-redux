@@ -1,10 +1,9 @@
-import Button from '@mui/material/Button';
+import { Button, Typography } from '@mui/material';
 import { useLocales } from "@hooks/useLocales";
 import { useLazyGetProductsQuery } from "@services/dataService";
 import { useUser } from "@hooks/useUser";
-import { Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { authService } from "@services/authService.ts";
+import { authService } from "@services/authService";
 
 export const Home = () => {
   const user = useUser();

@@ -1,7 +1,5 @@
-import { Button, keyframes, styled } from "@mui/material";
+import { Box, Button, keyframes, styled, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 
 export const NotFound = () => {
   const float = keyframes`
