@@ -1,16 +1,15 @@
-import { useEffect, useMemo } from "react";
+import { PropsWithChildren, useEffect, useMemo } from "react";
 import { createTheme, CssBaseline, ThemeProvider as MUIThemeProvider } from "@mui/material";
 import * as muiLocales from "@mui/material/locale";
 import { componentsOverrides } from "@theme/overrides/componentsOverrides";
 import { palette } from './overrides/palette';
 import { appFonts, typography } from './overrides/typography';
-import { WithChildren } from "@models/common";
 import { useConfig } from "@hooks/useConfig.ts";
 import { scrollbar } from "@theme/overrides/scrollbar";
 
 export const locales = muiLocales;
 
-export const ThemeProvider = ({children}: WithChildren) => {
+export const ThemeProvider = ({children}: PropsWithChildren) => {
   const [{paletteMode, rtl, locale}] = useConfig();
 
   const theme = useMemo(() => createTheme({
